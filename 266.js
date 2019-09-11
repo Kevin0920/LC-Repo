@@ -3,9 +3,7 @@ let palPerm = (s) => {
     //if odd: there must be only one unique char
 
     //use hash table to store letters
-    //if we see the same letter again, delete from hash
-    //check hash at the end: odd - 1 key left, even - no keys left
-    //skip spaces
+    //在回文里， 奇数只能有一个，剩下的都是偶数，或者在回文里都是偶数，也可以组成一个回文
 
     var hash = {};
     for (var i = 0; i < s.length; i++) {
@@ -26,16 +24,14 @@ let palPerm = (s) => {
         if (hash[key] % 2 === 1) {
             oddCount++;
         }
-        if (oddCount > 1) {
-            return false
-        }
         console.log(oddCount)
+        console.log(hash)
     }
-    return true
+    return oddCount < 2;
 };
 
 console.log(
-    // palPerm(' rac  ecar rara '),
+    palPerm(' rac  ecar rara '),
     // palPerm('chirpingmermaid'),
     // palPerm('code'),
     // palPerm('aabbcccc'),
