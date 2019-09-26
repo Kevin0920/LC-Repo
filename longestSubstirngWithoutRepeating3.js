@@ -42,7 +42,7 @@ var lengthOfLongestSubstring = function(s) {
         }
 
         seen[ch] = end;
-        // 见到相同的字母，删除原来的位子，然后加上后面重复出现的值：
+        // 见到相同的字母，删除原来在map里的位子，然后加上后面重复出现的值：
         // 例如： abcda
         // a 重复， 在 map里，减去 index 0 position a，最后最长的是 bcda
         maxLen = Math.max(maxLen, end - start + 1);
@@ -70,6 +70,6 @@ Example 3:
 Input: "pwwkew"
 Output: 3
 Explanation: The answer is "wke", with the length of 3. 
-             Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
 */

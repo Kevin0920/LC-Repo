@@ -61,6 +61,7 @@ class LRUCache {
         pre.next = next;
         next.pre = pre;
     }
+
     addToHead(newNode) {
         let cur = newNode,
             next = cur.next,
