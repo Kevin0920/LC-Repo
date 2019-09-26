@@ -26,6 +26,30 @@ var isValid = function(s) {
     return stack.length === 0;
 };
 
+const isValid = s => {
+    //     建一个栈，遇到左边的括号就入栈
+    let inStack = []
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === '(' || s[i] === '[' || s[i] === '{') {
+            inStack.push(s[i])
+        } else {
+            let temp = inStack.pop()
+            if (temp === '(' && s[i] !== ')') {
+                return false
+            } else if (temp === '[' && s[i] !== ']') {
+                return false
+            } else if (temp === '{' && s[i] !== '}') {
+                return false
+            } else if (!temp) {
+                //                    这个判断不要漏了，第一个开始的可能就是一个右边括号，所以有可能弹出的是空
+                return false
+            }
+        }
+    }
+    return inStack.length === 0 ? true : false
+}
+
+
 console.log(isValid('()'));
 
 /*

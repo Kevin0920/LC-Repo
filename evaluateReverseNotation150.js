@@ -5,10 +5,13 @@
 var evalRPN = function(tokens) {
     let numStack = [];
     for (let i = 0; i < tokens.length; i++) {
+        // stack logic first in last out, 在除法中的逻辑  2 / 1 = 2, ['2', '1', '/'] first pop num is 2, second pop is 1
         let cur = tokens[i];
-        if (cur === '+' || cur === '-' || cur === '*' || cur === '/') {
-            let firstPopNum = parseInt(numStack.pop());
+        if (cur === '+' || cur === '-' || cur === '*' || cur === '/') { // when see the operator do calculation
             let secondPopNum = parseInt(numStack.pop());
+            // console.log(secondPopNum)
+            let firstPopNum = parseInt(numStack.pop());
+            console.log('first ', firstPopNum)
             let tmp;
             if (cur === '+') {
                 tmp = firstPopNum + secondPopNum;
@@ -23,11 +26,13 @@ var evalRPN = function(tokens) {
             }
             numStack.push(tmp);
         } else {
-            numStack.push(cur);
+            numStack.push(cur); // 不是operator时候，是数字的时候
         }
+        console.log(numStack)
     }
     return numStack.pop();
 };
+console.log(evalRPN(["2", "1", "/"]))
 
 /*
 
