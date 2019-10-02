@@ -23,3 +23,8 @@ var deleteDuplicates = function(head) {
 
     return head;
 };
+/**
+ * 思路：
+ * 如果现在的位子的Node， 和下一位的值相等直接跳过下一位子
+ * 
+ */

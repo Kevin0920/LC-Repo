@@ -25,4 +25,4 @@ const moveZero = nums => {
 
 
 // console.log(moveZero([1,0,0,3,12]));
-console.log(moveZero([0,1,0,3,12]));
+console.log(moveZero([0, 1, 0, 3, 12]));

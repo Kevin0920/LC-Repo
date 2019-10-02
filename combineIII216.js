@@ -3,29 +3,32 @@
  * @param {number} n
  * @return {number[][]}
  */
-
 var combinationSum3 = function(k, n) {
-    if (k === 0 || n === 0) return [];
-    let result = [],
-        subSet = [];
-    dfs([1, 2, 3, 4, 5, 6, 7, 8, 9], k, n, result, subSet, 0);
+
+    let result = [];
+    dfs(k, n, result, [], 1);
+
     return result;
 };
 
+const dfs = (k, target, result, subset, idx) => {
 
-const dfs = (nums, k, n, result, subSet, index) => {
-
-    if (k === subSet.length && n === 0) {
-        result.push(subSet.slice());
+    if (target === 0 && subset.length === k) {
+        result.push(subset.slice());
         return;
     }
 
-    for (let i = index; i < nums.length; i++) {
-        subSet.push(nums[i]);
-        dfs(nums, k, n - nums[i], result, subSet, i + 1);
-        subSet.pop();
+    if (target < 0 || subset.length > k) return;
+
+    for (let i = idx; i <= 9; i++) {
+        if (i > target) continue;
+        subset.push(i);
+        dfs(k, target - i, result, subset, i + 1); // i + 1 是取下一个数， 而不取当前这个数
+        subset.pop();
     }
+
 }
+
 
 console.log(combinationSum3(3, 9));
 

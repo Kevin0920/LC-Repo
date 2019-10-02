@@ -18,10 +18,8 @@ var singleNumber = function(nums) {
             map[val] = 1;
         }
     }
-    // console.log(map)
 
     for (let key in map) {
-        // console.log(map[key])
         if (map[key] === 1) {
             findNum = parseInt(key);
         }
