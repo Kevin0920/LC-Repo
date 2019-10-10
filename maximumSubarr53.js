@@ -22,6 +22,20 @@ var maxSubArray = function(nums) {
     return maxSum;
 };
 
+var maxSubArray = function(nums) {
+    if (nums === null || nums.length === 0) return 0;
+
+    let max = nums[0],
+        curMax = nums[0];
+
+    for (let i = 1; i < nums.length; i++) {
+        curMax = Math.max(nums[i], curMax + nums[i]);
+        max = Math.max(max, curMax);
+    }
+
+    return max;
+};
+
 // Divide and Conquar
 
 var maxSubArray = function(nums) {
