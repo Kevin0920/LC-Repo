@@ -6,42 +6,40 @@ var threeSum = function(nums) {
     let result = [],
         len = nums.length;
     nums = nums.sort((a, b) => a - b);
-    
-    
-    for(let i = 0; i < len - 2; i++) {
-        if(i > 0 && nums[i] === nums[i - 1]) continue;
-        
-        if(nums[i] + nums[i + 1] + nums[i + 2] > 0) break;
-        
-        if(nums[i] + nums[len - 1] + nums[len - 1] < 0) continue;
-        
+
+
+    for (let i = 0; i < len - 2; i++) {
+        if (i > 0 && nums[i] === nums[i - 1]) continue;
+
+        if (nums[i] + nums[i + 1] + nums[i + 2] > 0) break;
+
+        if (nums[i] + nums[len - 1] + nums[len - 1] < 0) continue;
+
         let left = i + 1,
             right = len - 1;
-        
-        while(left < right) {
+
+        while (left < right) { //相互交叉
             let value = nums[i] + nums[left] + nums[right];
-            if(value === 0) {
-                result.push([nums[i], nums[left], nums[right]]);              
+            if (value === 0) {
+                result.push([nums[i], nums[left], nums[right]]);
                 left++;
                 right--;
                 // if there are both nums[left] and nums[right] interating and find duplicate values, then keep searching match pairs
-                while(left < right && nums[left] === nums[left - 1]) {
+                while (left < right && nums[left] === nums[left - 1]) {
                     left++;
                 }
-               
-                while(left < right && nums[right] === nums[right + 1]) {
+
+                while (left < right && nums[right] === nums[right + 1]) {
                     right--;
                 }
-                
-            }
-            else if(value < 0) {
+
+            } else if (value < 0) {
                 left++;
-            }
-            else {
+            } else {
                 right--;
             }
         }
-        
+
     }
     return result;
 };

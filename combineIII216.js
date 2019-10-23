@@ -2,6 +2,7 @@
  * @param {number} k
  * @param {number} n
  * @return {number[][]}
+ * time complexity: O(2 ^n)
  */
 var combinationSum3 = function(k, n) {
 
