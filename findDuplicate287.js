@@ -2,16 +2,20 @@ var findDuplicate = function(nums) {
     if (nums === null || nums.length === 0) return 0;
 
     nums = nums.sort((a, b) => a - b);
-
+    let result = []
     for (let i = 1; i < nums.length; i++) {
         if (nums[i] === nums[i - 1]) {
-            return nums[i];
+            // return nums[i];
+            result.push(nums[i])
+        } else {
+            continue
         }
     }
-    return -1;
+    // return -1;
+    return result
 };
 
-console.log(findDuplicate([1,3,4,2,2]));
+console.log(findDuplicate([1, 3, 4, 2, 2]));
 
 /*
 

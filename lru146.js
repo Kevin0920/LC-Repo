@@ -55,7 +55,7 @@ class LRUCache {
     }
 
     remove(node) {
-        let cur = node,
+        let cur = node, // the node want to remove 
             next = cur.next,
             pre = cur.pre;
         pre.next = next;

@@ -17,14 +17,14 @@ const findDuplicates = arr => {
 
     for (let i = 1; i < rows; i++) {
         for (let j = 0; j < cols; j++) {
-            console.log(cols[j])
             let val = arr[i][j];
+            console.log(val)
             if (map[val]) {
                 map[val]++;
             }
         }
     }
-    // console.log(map)
+    console.log(map)
     for (let key in map) {
         if (map[key] === arr.length) {
             result.push(parseInt(key));
