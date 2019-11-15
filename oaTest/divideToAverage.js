@@ -1,94 +1,57 @@
-function check(img) {
-    let res = [];
-    img[0].forEach((item) => {
-        res.push([]);
-    })
-    console.log(res)
-    for (let i = 0; i < img.length; i++) {
-        for (let j = 0; j < img[i].length; j++) {
-            let up;
-            let left;
-            let down;
-            let right;
-            let upLeft;
-            let upRight;
-            let downleft;
-            let downRight;
-            let count = 0;
-
-            if (img[i - 1]) {
-                up = img[i - 1][j] ? img[i - 1][j] : 0;
+function check(M) {
+    var result = [];
+    var sum = 0,
+        count = 0;
+    for (var i=0; i<M.length; i++) {
+        result[i] = [];
+        for (var j=0; j<M[i].length; j++) {
+            sum = M[i][j];
+            count = 1;
+            if ( (i-1) >= 0 ) {
+                sum += M[i-1][j];//左
                 count++;
-                if (img[i - 1][j - 1]) {
-                    upLeft = img[i - 1][j - 1];
+                if ( (j-1) >= 0 ) {
+                    sum += M[i-1][j-1];//左上角
                     count++;
-                } else {
-                    upLeft = 0
                 }
-
-                if (img[i - 1][j + 1]) {
-                    upRight = img[i - 1][j + 1];
+                if ( (j+1) < M[i].length ) {
+                    sum += M[i-1][j+1];//左下角
                     count++;
-                } else {
-                    upRight = 0;
                 }
-            } else {
-                up = 0;
-                upLeft = 0;
-                upRight = 0;
             }
-            if (img[i][j - 1]) {
-                left = img[i][j - 1];
+            if ( (i+1) < M.length ) {
+                sum += M[i+1][j];//右
                 count++;
-            } else {
-                left = 0;
-            }
-            // left = img[i][j-1] ? img[i][j-1] : 0;
-            if (img[i + 1]) {
-                down = img[i + 1][j]
-                count++;
-                if (img[i + 1][j - 1]) {
-                    downleft = img[i + 1][j - 1];
+                if ( (j-1) >= 0) {
+                    sum += M[i+1][j-1];//右上角
                     count++;
-                } else {
-                    downleft = 0;
                 }
-                if (img[i + 1][j + 1]) {
-                    downRight = img[i + 1][j + 1];
+                if ( (j+1) < M[i].length ) {
+                    sum += M[i+1][j+1];//右下角
                     count++;
-                } else {
-                    downRight = 0;
                 }
-            } else {
-                down = 0;
-                downRight = 0;
-                downleft = 0;
-
             }
-            if (img[i][j + 1]) {
-                right = img[i][j + 1];
+            if ( (j-1) >= 0 ) {
+                sum += M[i][j-1];//上
                 count++;
-
-            } else {
-                right = 0;
-
             }
-            console.log(img[i][j] + " up: " + up + " " + "left: " + left + " " + "down: " + down + " " + "right: " + right + " " + "upLeft: " + upLeft + " " + "upRight: " + upRight + " " + "downleft: " + downleft + " " + "downRight: " + downRight)
-            console.log(count)
-
-            res[i][j] = (up + left + down + right + upLeft + upRight + downRight + downleft) / count;
+            if ( (j+1) < M[i].length ) {
+                sum += M[i][j+1];//下
+                count++;
+            }
+            result[i][j] = Math.floor(sum / count);
         }
     }
-    console.log(res)
+    return result;
 }
 
-check([
-    [1, 4, ],
-    [7, 10]
-]);
-
 // check([
-//     [1, 4, 6, 8],
-//     [7, 10, 9, 2],
-//     [11, 1, 3, 9]
+//     [1, 4, ],
+//     [7, 10]
 // ]);
+
+console.log(check([
+    [1, 4, 6, 8],
+    [7, 10, 9, 2],
+    [11, 1, 3, 9]
+]));
