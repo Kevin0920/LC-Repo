@@ -19,17 +19,17 @@ var isPalindrome = function(str) {
             currentRight = str[right].toLowerCase();
 
         // if the string is '&&&&$$$$' no alphanumeric(letter or number), it consider as empty string, need edge case here to not go over the boundary 
-        if (left <= right && !set.has(currentLeft)) {
+        if (!set.has(currentLeft)) {
             left++;
             continue;
         }
 
-        if (left <= right && !set.has(currentRight)) {
+        if (!set.has(currentRight)) {
             right--;
             continue;
         }
 
-        if (left <= right && currentLeft !== currentRight) {
+        if (currentLeft !== currentRight) {
             return false;
         }
 

@@ -1,36 +1,56 @@
-const mergeSort = arr => {
-    //采用自上而下的递归方法
-    const len = arr.length;
-    if (len < 2) {
-        return arr;
-    }
-    // length >> 1 和 Math.floor(len / 2) 等价
-    let middle = Math.floor(len / 2),
-        left = arr.slice(0, middle),
-        right = arr.slice(middle); // 拆分为两个子数组
-    return merge(mergeSort(left), mergeSort(right));
-};
+// 
 
-const merge = (left, right) => {
-    const result = [];
+// function gem(item) {
+//     for (let i = 0; i < item.length; i++) {
+//         if (item[i].length === 0) {
+//             item.splice(i, 1)
+//         }
+//     }
+//     return item
+// }
 
-    while (left.length && right.length) {
-        // 注意: 判断的条件是小于或等于，如果只是小于，那么排序将不稳定.
-        if (left[0] <= right[0]) {
-            result.push(left.shift());
-        } else {
-            result.push(right.shift());
-        }
-    }
+// let name = ['rachel', '', 'kevin', '', 'ken'];
 
-    while (left.length) result.push(left.shift());
+// console.log(gem(name));
 
-    while (right.length) result.push(right.shift());
+// function gem(start, range) {
+//     let x = start;
+//     let dir = 1;
+//     return function () {
+//         x += dir;
+//         if (Math.abs(x - start) >= range) {
+//             dir *= -1;
+//         }
+//         return x;
+//     }
+// }
+// let f = gem(4, 5)
+// f();
+// f();
+// f();
+// f();
+// f();
+// let g = f();
+// console.log(g);
 
-    return result;
-};
+const getItemOrder = customer => (...orders) => {
+    return orders.filter(order => order.customerId === customer.id)
+    .map(order => order.items)
+    .reduce((acc, cur) => [...acc, ...cur], []);
+}
+let customer = {
+    name: 'fiddy',
+    id: 5
+}
 
-const arr = [3, 44, 38, 5, 47, 15, 36, 26, 3, 2, 27, 2, 46, 4, 19, 50, 48];
-console.time('归并排序耗时');
-console.log('arr :', mergeSort(arr));
-console.timeEnd('归并排序耗时');
+const order1 = {id: 1, customerId: 1, items: ['belt']};
+const order2 = {id: 2, customerId: 5, items: ['chain', 'deo']};
+const order3 = {id: 3, customerId: 5, items: ['grills']};
+const order4 = {id: 4, customerId: 2, items: ['pants']};
+
+const w = getItemOrder(customer)(order1, order2, order3, order4)
+const x = getItemOrder(customer)([order1, order2, order3, order4])
+const y = getItemOrder(customer, order1, order2, order3, order4)
+const z = getItemOrder(customer)(order1, order2, order4)
+
+console.log(w);
