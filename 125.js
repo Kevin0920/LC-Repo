@@ -12,7 +12,7 @@ var isPalindrome = function(str) {
     let left = 0,
         right = str.length - 1;
 
-    let set = new Set("abcdefghijlkmnopqrstuvwrxyz0123456789".split(''));
+    let set = new Set("abcdefghijlkmnopqrstuvwrxyz0123456789");
 
     while (left <= right) {
         let currentLeft = str[left].toLowerCase(),
